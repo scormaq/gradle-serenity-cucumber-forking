@@ -1,0 +1,13 @@
+# Idea
+.idea
+*.iml
+*.ipr
+*.iws
+out
+
+# Gradle
+.gradle
+build
+
+# Serenity
+target

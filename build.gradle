@@ -1,0 +1,53 @@
+buildscript {
+    repositories {
+        jcenter()
+        mavenCentral()
+    }
+    dependencies {
+        classpath "net.serenity-bdd:serenity-gradle-plugin:2.0.7"
+    }
+}
+
+plugins {
+    id "java"
+    id "idea"
+}
+
+apply plugin: "net.serenity-bdd.aggregator"
+
+repositories.addAll(buildscript.repositories)
+
+description = 'Gradle solution for Serenity-Cucumber forking mechanizm'
+group 'com.github.scormaq'
+version = '1.0-SNAPSHOT'
+
+idea.module {
+    downloadJavadoc = true
+    downloadSources = true
+}
+
+dependencies {
+    compile "net.serenity-bdd:serenity-core:2.0.7"
+    compile "net.serenity-bdd:serenity-cucumber:1.9.18"
+}
+
+test {
+
+    // We need to have full list of runners to prevent case when count of cucumber forks > count of runners.
+    // As result there, runners = ['FeatureSlicedRunner1', 'FeatureSlicedRunner2', 'FeatureSlicedRunner3']
+    List<String> runners = file('src/test/java/com/github/scormaq').listFiles()
+            .collect { it.name }
+            .findAll { it =~ 'FeatureSlicedRunner' }
+            .collect { it.take(it.lastIndexOf('.')) } // trim '.java' to use file names in gradle test filter
+
+    maxParallelForks = System.properties.'serenity.fork.count' as Integer ?: 1
+    maxParallelForks = [maxParallelForks, runners.size()].min() // set correct maximum number of forks, if value in 'serenity.fork.count' was too big
+    systemProperty 'serenity.fork.count', maxParallelForks // correct that property as well
+    maxParallelForks.times { filter.includeTestsMatching runners[it] }
+
+    ignoreFailures = true
+    testLogging.showStandardStreams = true
+    testLogging.exceptionFormat = 'full'
+}
+
+gradle.startParameter.continueOnFailure = true
