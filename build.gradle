@@ -4,7 +4,7 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath "net.serenity-bdd:serenity-gradle-plugin:2.0.7"
+        classpath "net.serenity-bdd:serenity-gradle-plugin:2.0.48"
     }
 }
 
@@ -26,9 +26,19 @@ idea.module {
     downloadSources = true
 }
 
+configurations.all {
+    resolutionStrategy {
+        failOnVersionConflict()
+        preferProjectModules()
+        force "io.cucumber:cucumber-core:4.2.0", "io.cucumber:cucumber-java:4.2.0", "io.cucumber:cucumber-junit:4.2.0"
+    }
+}
+
 dependencies {
-    compile "net.serenity-bdd:serenity-core:2.0.7"
-    compile "net.serenity-bdd:serenity-cucumber:1.9.18"
+    compile "net.serenity-bdd:serenity-core:2.0.48"
+    compile "net.serenity-bdd:serenity-cucumber4:1.0.11"
+    compile "io.cucumber:cucumber-core:4.2.0"
+    compile "io.cucumber:cucumber-junit:4.2.0"
 
     compile "org.apache.logging.log4j:log4j-slf4j-impl:2.11.1"
     compile "org.apache.logging.log4j:log4j-core:2.11.1"
