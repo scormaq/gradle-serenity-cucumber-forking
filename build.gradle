@@ -29,9 +29,14 @@ idea.module {
 dependencies {
     compile "net.serenity-bdd:serenity-core:2.0.7"
     compile "net.serenity-bdd:serenity-cucumber:1.9.18"
+
+    compile "org.apache.logging.log4j:log4j-slf4j-impl:2.11.1"
+    compile "org.apache.logging.log4j:log4j-core:2.11.1"
 }
 
 test {
+
+    systemProperty 'log4j.skipJansi', 'false' // fix log4j2 coloring output
 
     // We need to have full list of runners to prevent case when count of cucumber forks > count of runners.
     // As result there, runners = ['FeatureSlicedRunner1', 'FeatureSlicedRunner2', 'FeatureSlicedRunner3']

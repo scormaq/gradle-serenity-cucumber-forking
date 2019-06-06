@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration strict="true">
+  <Appenders>
+    <Console name="STDOUT">
+      <PatternLayout
+        pattern="%highlight{[%p][%d{yyyy-MM-dd HH:mm:ss}] %m%n}{ERROR=Bright Red, WARN=Bright Yellow, INFO=Bright Blue, DEBUG=Bright}"/>
+    </Console>
+  </Appenders>
+  <Loggers>
+    <Logger name="net.serenitybdd.core" level="INFO"/>
+    <Logger name="net.thucydides.core" level="INFO"/>
+    <Logger name="net.thucydides.core.steps" level="DEBUG"/>
+    <Logger name="net.schmizz" level="WARN"/>
+    <Root level="DEBUG">
+      <AppenderRef ref="STDOUT"/>
+    </Root>
+  </Loggers>
+</Configuration>

@@ -6,6 +6,9 @@ import cucumber.api.CucumberOptions;
 import net.serenitybdd.cucumber.CucumberWithSerenity;
 
 @RunWith(CucumberWithSerenity.class)
-@CucumberOptions(features = {"classpath:features"}, plugin = {"com.github.scormaq.SerenityCucumberForker"})
+@CucumberOptions(
+    features = "classpath:features",
+    plugin = {"com.github.scormaq.SerenityCucumberForker"},
+    glue = "com.github.scormaq")
 public class FeatureSlicedRunner1 {
 }
