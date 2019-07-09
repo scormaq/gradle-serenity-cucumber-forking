@@ -1,12 +1,12 @@
 package com.github.scormaq;
 
+import cucumber.api.event.ConcurrentEventListener;
 import cucumber.api.event.EventPublisher;
 import cucumber.api.event.TestRunStarted;
-import cucumber.api.formatter.Formatter;
 import net.thucydides.core.guice.Injectors;
 import net.thucydides.core.util.EnvironmentVariables;
 
-public class SerenityCucumberForker implements Formatter {
+public class SerenityCucumberForker implements ConcurrentEventListener {
 
     @Override
     public void setEventPublisher(EventPublisher publisher) {
