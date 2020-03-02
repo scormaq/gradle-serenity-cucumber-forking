@@ -2,13 +2,11 @@ package com.github.scormaq;
 
 import org.junit.runner.RunWith;
 
-import cucumber.api.CucumberOptions;
-import net.serenitybdd.cucumber.CucumberWithSerenity;
+import com.github.scormaq.runners.CucumberSerneityRunner1;
 
-@RunWith(CucumberWithSerenity.class)
-@CucumberOptions(
-    features = "classpath:features",
-    plugin = {"com.github.scormaq.SerenityCucumberForker"},
-    glue = "com.github.scormaq")
+import cucumber.api.CucumberOptions;
+
+@RunWith(CucumberSerneityRunner1.class)
+@CucumberOptions(features = "classpath:features", glue = "com.github.scormaq")
 public class FeatureSlicedRunner1 {
 }

@@ -1,10 +1,16 @@
 buildscript {
+    ext {
+        serenity_version = '2.1.5'
+        serenity_cucumber4_version = '2.1.2'
+        cucumber_version = '4.8.0'
+    }
+
     repositories {
         jcenter()
         mavenCentral()
     }
     dependencies {
-        classpath "net.serenity-bdd:serenity-gradle-plugin:2.0.48"
+        classpath "net.serenity-bdd:serenity-gradle-plugin:$serenity_version"
     }
 }
 
@@ -17,7 +23,7 @@ apply plugin: "net.serenity-bdd.aggregator"
 
 repositories.addAll(buildscript.repositories)
 
-description = 'Gradle solution for Serenity-Cucumber forking mechanizm'
+description = 'Gradle solution for Serenity-Cucumber4 forking mechanizm'
 group 'com.github.scormaq'
 version = '1.0-SNAPSHOT'
 
@@ -30,15 +36,15 @@ configurations.all {
     resolutionStrategy {
         failOnVersionConflict()
         preferProjectModules()
-        force "io.cucumber:cucumber-core:4.2.0", "io.cucumber:cucumber-java:4.2.0", "io.cucumber:cucumber-junit:4.2.0"
+        force "io.cucumber:cucumber-core:$cucumber_version", "io.cucumber:cucumber-java:$cucumber_version", "io.cucumber:cucumber-junit:$cucumber_version"
     }
 }
 
 dependencies {
-    compile "net.serenity-bdd:serenity-core:2.0.48"
-    compile "net.serenity-bdd:serenity-cucumber4:1.0.11"
-    compile "io.cucumber:cucumber-core:4.2.0"
-    compile "io.cucumber:cucumber-junit:4.2.0"
+    compile "net.serenity-bdd:serenity-core:$serenity_version"
+    compile "net.serenity-bdd:serenity-cucumber4:$serenity_cucumber4_version"
+    compile "io.cucumber:cucumber-core:$cucumber_version"
+    compile "io.cucumber:cucumber-junit:$cucumber_version"
 
     compile "org.apache.logging.log4j:log4j-slf4j-impl:2.11.1"
     compile "org.apache.logging.log4j:log4j-core:2.11.1"

@@ -6,6 +6,7 @@ import cucumber.api.event.TestRunStarted;
 import net.thucydides.core.guice.Injectors;
 import net.thucydides.core.util.EnvironmentVariables;
 
+@Deprecated
 public class SerenityCucumberForker implements ConcurrentEventListener {
 
     @Override
